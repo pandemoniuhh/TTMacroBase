@@ -18,7 +18,7 @@ startImg=0
 #Persistent
 Gui, 1: -MaximizeBox -MinimizeBox
 Gui, 1: Add, Button, gSet x56 y8 w122 h20, Set Windows
-Gui, 1: Add, Button, gConfig x120 y32 w58 h20, Config
+Gui, 1: Add, Button, gConfig x120 y32 w58 h20 +Disabled, Config
 Gui, 1: Add, Button, gReset x56 y32 w58 h20, Reset
 Gui, 1: Add, Picture, x0 y8 w48 h48 vFirstCheckbox, checkbox_uncheck.png
 Gui, 1: Add, Picture, x180 y8 w48 h48 vSecondCheckbox, checkbox_uncheck.png
@@ -65,7 +65,6 @@ Return
 
 
 Config:
-MsgBox, 64, Currently Unavailable, This feature is currently in development.
 ; Gui, 2:Show,x560 y550 w312 h230,Config
 Return
 
