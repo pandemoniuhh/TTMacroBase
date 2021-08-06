@@ -15,10 +15,11 @@ startImg=0
 
 ; main gui
 
+#Persistent
 Gui, 1: -MaximizeBox -MinimizeBox
-Gui, 1: Add, Button, gSet x56 y8 w122 h20, &Set Windows
-Gui, 1: Add, Button, gConfig x120 y32 w58 h20, &Config
-Gui, 1: Add, Button, gReset x56 y32 w58 h20, &Reset
+Gui, 1: Add, Button, gSet x56 y8 w122 h20, Set Windows
+Gui, 1: Add, Button, gConfig x120 y32 w58 h20, Config
+Gui, 1: Add, Button, gReset x56 y32 w58 h20, Reset
 Gui, 1: Add, Picture, x0 y8 w48 h48 vFirstCheckbox, checkbox_uncheck.png
 Gui, 1: Add, Picture, x180 y8 w48 h48 vSecondCheckbox, checkbox_uncheck.png
 Gui, 1: Add, StatusBar,, Click set windows.
@@ -45,9 +46,9 @@ Gui, 2: Tab, Notes
 Gui, 2: Add, Text, x16 y32 w120 h20 +0x200, Notes:
 Gui, 2: Add, Text, x16 y48 w175 h20 +0x200, Double click to clear the hotkey.
 Gui, 2: Tab
-Gui, 2: Add, Button, gCancel x226 y200 w80 h23, &Cancel
-Gui, 2: Add, Button, gOK x138 y200 w80 h23, &OK
-Gui, 2: Add, Button, gAbout x8 y200 w80 h23, &About
+Gui, 2: Add, Button, gCancel x226 y200 w80 h23, Cancel
+Gui, 2: Add, Button, gOK x138 y200 w80 h23, OK
+Gui, 2: Add, Button, gAbout x8 y200 w80 h23, About
 
 ;about Gui
 Gui 3:-MinimizeBox -MaximizeBox +AlwaysOnTop
@@ -55,7 +56,7 @@ Gui 3:Font, s9, Segoe UI
 Gui 3:Add, Text, x8 y8 w260 h23 +0x200, Authored and created entirely by Pandemonium
 Gui 3:Add, Text, x8 y48 w82 h23 +0x200, Version 1.0.0
 Gui 3:Add, Link, x8 y32 w226 h23, <a href="https://github.com/pandemoniuhh">github.com/pandemoniuhh</a>
-Gui 3:Add, Button, gOKAbout x192 y72 w80 h23, &OK
+Gui 3:Add, Button, gOKAbout x192 y72 w80 h23, OK
 
 
 Gui, 1: Show, w228 h79, Multi-Click
@@ -92,7 +93,7 @@ Return
 
 ;then comes the fun shit
 Set:
-	
+	Gui, +AlwaysOnTop
 	GuiControl,,FirstCheckbox, %Img0%
 	GuiControl,,SecondCheckbox, %Img0%
     SB_SetText("Click the first window.")
@@ -125,6 +126,7 @@ Set:
 	GuiControl,,SecondCheckbox, %Img1%
     Hotkey, Alt, on
     SB_SetText("MultiClick is now active.")
+	Gui, -AlwaysOnTop
     return
 
 $Alt::
@@ -137,6 +139,7 @@ $Alt::
     MouseMove, %x_jump%, 0, 0, R
     MouseClick, Left
     MouseMove, %x_jump_back%, 0, 0, R
+	return
 
 Reset:
     Reload
